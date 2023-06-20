@@ -1,5 +1,6 @@
 ﻿using AppointmentSystem.Database;
 using AppointmentSystem.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentSystem.Repositories
 {
@@ -20,6 +21,16 @@ namespace AppointmentSystem.Repositories
         public bool AppointmentGUIDIsExist(Guid appointmentGUID)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<Appointment>> GetAll()
+        {
+            return _db.Appointments.ToList();
+        }
+
+        public async Task <List<Appointment>> getByDocID(string? DocID)
+        {
+            return await _db.Appointments.Where(x => x.DoctorId.ToString() == DocID).ToListAsync();
         }
     }
 }

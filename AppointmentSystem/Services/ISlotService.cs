@@ -6,6 +6,7 @@ namespace AppointmentSystem.Services
     {
         public Task CreateSlot(Slot slot);
         public Task <List<Slot>> GetAll(string?name);
+        public Task<List<Slot>> GetAvailable(string? name);
         public Task <Slot> GetBySlotID(string slotID);
         public Task UpdateSlot(Slot slot);
     }

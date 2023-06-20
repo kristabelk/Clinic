@@ -11,5 +11,6 @@ namespace AppointmentSystem.Entities
         [Required]
         public string PatientName { get; set;}
         public DateTime ReserveAt { get; set; }
+        public Guid DoctorId { get; set; }
     }
 }

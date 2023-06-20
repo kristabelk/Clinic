@@ -9,7 +9,7 @@ namespace AppointmentSystem.Controllers
     public class SlotController : ControllerBase
     {
         private readonly ISlotService _slotService;
-        public List<Slot> QueriedSlots { get; set; }
+        //public List<Slot> QueriedSlots { get; set; }
 
         public SlotController(ISlotService slotService)
         {
@@ -37,11 +37,22 @@ namespace AppointmentSystem.Controllers
             var slotResult = await _slotService.GetAll(DocID);
             if (slotResult.Count == 0)
                 return BadRequest("Doctor not found");
-            QueriedSlots = slotResult.ToList();
+           // QueriedSlots = slotResult.ToList();
             return Ok(slotResult);
         }
 
-        
+        [Route("/slots/Available")]
+        [HttpGet]
+        public async Task<IActionResult> GetAvailableSlots([FromHeader] string? DocID)
+        {
+            var slotResult = await _slotService.GetAvailable(DocID);
+            if (slotResult.Count == 0)
+                return BadRequest("Doctor not found");
+            // QueriedSlots = slotResult.ToList();
+            return Ok(slotResult);
+        }
+
+
         public async Task <IActionResult> GetBySlotID(string slotID)
         {
             Slot SlotInfo = await _slotService.GetBySlotID(slotID);

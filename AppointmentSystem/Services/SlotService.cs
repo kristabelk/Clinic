@@ -35,6 +35,22 @@ namespace AppointmentSystem.Services
             }
         }
 
+        public async Task<List<Slot>> GetAvailable(string? name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return await _slotRepository.GetAvailable();
+                //throw new CategoryNameEmptyException();
+            }
+            else
+            {
+                var slot = await _slotRepository.getByDoctorIDAvail(name);
+                if (slot == null)
+                    return new List<Slot> { };
+                return slot;
+            }
+        }
+
         public async Task <Slot> GetBySlotID(string id)
         {
             return await _slotRepository.getBySlotID(id);

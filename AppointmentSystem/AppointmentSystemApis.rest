@@ -4,10 +4,10 @@ POST {{url}}/slots
 Content-Type: application/json
 
 {
-    "Time" : "19/06/2023 09:00 am",
-    "Cost":50,
-    "DoctorId" :"e13e6b1d-f892-48c0-af9d-d8fdb8d3a8f9",
-    "DoctorName":"Dr. A",
+    "Time" : "20/06/2023 09:00 am",
+    "Cost":70,
+    "DoctorId" :"b84822c4-4226-48ff-bd89-7dc727477449",
+    "DoctorName":"Dr. C",
     "IsReserved" : false
 }
 
@@ -16,13 +16,18 @@ POST  {{url}}/appointments
 Content-Type: application/json
 
 {
-    //"Id": "",
-    "SlotId": "bae35955-4bc7-49c8-b057-cccb0715aabd",
-    //"PatientId": "",
-    "PatientName":"Patient A",
-    "ReservedAt": "22/02/2023 04:30 pm"
+    "SlotId": "31e09cd6-261c-4cb4-bcef-b6ab1f928661",
+    "PatientName":"Patient q"
 }
 
 ###
 GET  {{url}}/slots
-name:
+DocId: 
+
+###
+GET {{url}}/appointments
+DocId:
+
+###
+GET {{url}}/slots/Available
+DocId:

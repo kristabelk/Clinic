@@ -30,7 +30,17 @@ namespace AppointmentSystem.Controllers
             await _appointmentService.CreateAppointment(appointment.ConvertToAppointment());
             return Ok("Appointment Created..");
         }
-       
+
+        [HttpGet]
+        public async Task<IActionResult> Get([FromHeader] string? DocID)
+        {
+            var apptResult = await _appointmentService.GetAll(DocID);
+            if (apptResult.Count == 0)
+                return BadRequest("no appt found");
+            
+            return Ok(apptResult);
+        }
+
 
     }
 }

@@ -15,5 +15,15 @@ namespace AppointmentSystem.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<Appointment>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Appointment>> getByDocID(string? docID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

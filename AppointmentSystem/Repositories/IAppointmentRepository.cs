@@ -6,5 +6,7 @@ namespace AppointmentSystem.Repositories
     {
         public bool AppointmentGUIDIsExist (Guid appointmentGUID);
         public Task Add(Appointment appointment);
+        public Task <List<Appointment>> GetAll ();
+        public Task <List<Appointment>> getByDocID (string? docID);
     }
 }

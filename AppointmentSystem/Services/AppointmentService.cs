@@ -29,10 +29,27 @@ namespace AppointmentSystem.Services
             else
             {
                 appointment.ReserveAt = slot.Date;
+                appointment.DoctorId = slot.DoctorId;
                 await _appointmentRepository.Add(appointment);
 
                 await _slotRepository.UpdateSlot(slot);
 
+            }
+        }
+
+        public async Task<List<Appointment>> GetAll(string? name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return await _appointmentRepository.GetAll();
+                //throw new CategoryNameEmptyException();
+            }
+            else
+            {
+                var appt = await _appointmentRepository.getByDocID(name);
+                if (appt == null)
+                    return new List<Appointment> { };
+                return appt;
             }
         }
     }

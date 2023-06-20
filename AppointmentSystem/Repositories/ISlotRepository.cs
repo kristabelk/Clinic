@@ -8,6 +8,8 @@ namespace AppointmentSystem.Repositories
         public Task <List<Slot>> GetAll();
         public Task <List<Slot>> getByDoctorID(string? DocID);
         public Task<Slot> getBySlotID(string SlotID);
-        public Task UpdateSlot(Slot slot);  
+        public Task UpdateSlot(Slot slot); 
+        public Task <List <Slot>> GetAvailable();
+        public Task<List<Slot>> getByDoctorIDAvail(string? DocID);
     }
 }

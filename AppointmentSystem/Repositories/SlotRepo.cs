@@ -23,11 +23,22 @@ namespace AppointmentSystem.Repositories
             return _db.Slots.ToList();// return Slots; 
         }
 
+        public async Task<List<Slot>> GetAvailable()
+        {
+            return await _db.Slots.Where(x => x.IsReserved == false).ToListAsync();
+        }
 
         public async Task<List<Slot>> getByDoctorID(string? DocID)
         {
             return await _db.Slots.Where(x=> x.DoctorId.ToString() == DocID).ToListAsync();
             
+        }
+
+        public async Task<List<Slot>> getByDoctorIDAvail(string? DocID)
+        {
+            List<Slot> availslots = await _db.Slots.Where(x => x.IsReserved == false).ToListAsync();
+
+            return availslots.Where(x => x.DoctorId.ToString() == DocID).ToList();
         }
 
         public async Task<Slot?> getBySlotID(string SlotID)
