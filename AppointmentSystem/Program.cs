@@ -1,21 +1,22 @@
+using AppointmentSystem.Services;
+using AppointmentSystem.Repositories;
+using AppointmentSystem.Database;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+//add builder services
+builder.Services.AddClinicDb(builder.Configuration);
+builder.Services.AddTransient<IAppointmentRepository, AppointmentRepo>();
+builder.Services.AddTransient<IAppointmentService, AppointmentService>();
+
+builder.Services.AddTransient<ISlotRepository,SlotRepo>();
+builder.Services.AddTransient<ISlotService, SlotService>();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-}
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapRazorPages();
+app.MapGet("/", () => "Clinic Module");
+app.MapControllers();
 
 app.Run();
