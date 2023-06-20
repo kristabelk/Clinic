@@ -23,7 +23,17 @@ namespace AppointmentSystem.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<List<Slot>> getByDoctor(string? DocName)
+        public Task<List<Slot>> getByDoctorID(string? DocName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Slot> getBySlotID(string SlotID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateSlot(Slot slot)
         {
             throw new NotImplementedException();
         }

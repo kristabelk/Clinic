@@ -1,4 +1,5 @@
-﻿using AppointmentSystem.Entities;
+﻿using AppointmentSystem.Controllers.Dtos;
+using AppointmentSystem.Entities;
 using AppointmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,7 @@ namespace AppointmentSystem.Controllers
         }
 
         [HttpPost]
-        public async Task <IActionResult> Post([FromBody] Appointment appointment)
+        public async Task <IActionResult> Post([FromBody] CreateAppointmentRequest appointment)
         {
             if (!ModelState.IsValid)
             {
@@ -26,7 +27,7 @@ namespace AppointmentSystem.Controllers
                 return BadRequest(errors);
             }
 
-            await _appointmentService.CreateAppointment(appointment);
+            await _appointmentService.CreateAppointment(appointment.ConvertToAppointment());
             return Ok("Appointment Created..");
         }
        

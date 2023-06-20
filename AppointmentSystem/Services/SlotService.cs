@@ -28,13 +28,21 @@ namespace AppointmentSystem.Services
             }
             else
             {
-                var slot = await _slotRepository.getByDoctor(name);
+                var slot = await _slotRepository.getByDoctorID(name);
                 if(slot == null)
                     return new List<Slot> { };
                 return slot;
             }
+        }
 
-            
+        public async Task <Slot> GetBySlotID(string id)
+        {
+            return await _slotRepository.getBySlotID(id);
+        }
+
+        public async Task UpdateSlot(Slot slot)
+        {
+            await _slotRepository.UpdateSlot(slot);
         }
     }
 }

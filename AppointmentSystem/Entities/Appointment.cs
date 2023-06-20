@@ -10,6 +10,6 @@ namespace AppointmentSystem.Entities
         public Guid PatientId { get; set; }
         [Required]
         public string PatientName { get; set;}
-        public DateTime Date { get; set; }
+        public DateTime ReserveAt { get; set; }
     }
 }

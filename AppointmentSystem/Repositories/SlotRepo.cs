@@ -24,10 +24,23 @@ namespace AppointmentSystem.Repositories
         }
 
 
-        public async Task<List<Slot>> getByDoctor(string? DocName)
+        public async Task<List<Slot>> getByDoctorID(string? DocID)
         {
-            return await _db.Slots.Where(x=> x.DoctorName == DocName).ToListAsync();
+            return await _db.Slots.Where(x=> x.DoctorId.ToString() == DocID).ToListAsync();
             
+        }
+
+        public async Task<Slot?> getBySlotID(string SlotID)
+        {
+            return await _db.Slots.Where(x=> x.Id.ToString() == SlotID).SingleOrDefaultAsync();
+        }
+
+        public async Task UpdateSlot(Slot slot)
+        {
+            slot.IsReserved = !slot.IsReserved;
+            _db.Slots.Update(slot);
+            await _db.SaveChangesAsync();
+
         }
     }
 }
