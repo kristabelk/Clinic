@@ -9,15 +9,18 @@ namespace AppointmentSystem.Controllers
     public class AppointmentController : ControllerBase
     {
         private readonly IAppointmentService _appointmentService;
+        private readonly ILogger<AppointmentController> _logger;
 
-        public AppointmentController(IAppointmentService appointmentService)
+        public AppointmentController(IAppointmentService appointmentService, ILogger<AppointmentController> logger)
         {
             _appointmentService = appointmentService;
+            _logger = logger;
         }
 
         [HttpPost]
         public async Task <IActionResult> Post([FromBody] CreateAppointmentRequest appointment)
         {
+            _logger.LogInformation("starting to create appointment");
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values

@@ -9,12 +9,15 @@ namespace AppointmentSystem.Services
     {
         public readonly SlotController slotController;
         public readonly IAppointmentRepository _appointmentRepository;
-        public readonly ISlotRepository _slotRepository;  //can i do this???? is this bad? 
+        public readonly ISlotRepository _slotRepository; 
 
-        public AppointmentService(IAppointmentRepository appointmentRepository, ISlotRepository slotRepository)
+        private readonly ILogger<IAppointmentService> _logger;
+
+        public AppointmentService(IAppointmentRepository appointmentRepository, ISlotRepository slotRepository, ILogger<IAppointmentService> logger)
         {
             _appointmentRepository = appointmentRepository;
             _slotRepository = slotRepository;
+            _logger = logger;
         }
 
         public async Task CreateAppointment(Appointment appointment)
@@ -24,6 +27,7 @@ namespace AppointmentSystem.Services
             var slot = await _slotRepository.getBySlotID(SlotID.ToString());
             if (slot.IsReserved)
             {
+                _logger.LogError("Slot taken, Appointment creation fail");
                 throw new SlotNotAvailableException();
             }
             else
@@ -33,7 +37,7 @@ namespace AppointmentSystem.Services
                 await _appointmentRepository.Add(appointment);
 
                 await _slotRepository.UpdateSlot(slot);
-
+                SendNotification(appointment,slot);
             }
         }
 
@@ -51,6 +55,16 @@ namespace AppointmentSystem.Services
                     return new List<Appointment> { };
                 return appt;
             }
+        }
+
+        public void SendNotification(Appointment appointment, Slot slot)
+        {
+            string patientName = appointment.PatientName;
+            string docName = slot.DoctorName;
+            string dateTime = appointment.ReserveAt.ToString("dd-MM-yyyy hh:mm tt");
+
+             _logger.LogInformation("Patient Notification: Dear {1}, your appointment with {2} is confirmed. Please be at the clinic on {3}", patientName, docName, dateTime);
+            _logger.LogInformation("Doctor Notification: Dear {1}, you have an appointment on {2} with {3}", docName, dateTime, patientName);
         }
     }
 }
