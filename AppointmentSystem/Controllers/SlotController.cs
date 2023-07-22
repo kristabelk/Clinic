@@ -28,7 +28,7 @@ namespace AppointmentSystem.Controllers
                 return BadRequest(errors);
             }
             await _slotService.CreateSlot(slot.ConvertToSlot());
-            return Ok("slot Created..");
+            return Ok("Slot Created..");
         }
 
         [HttpGet]

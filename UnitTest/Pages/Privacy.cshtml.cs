@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AppointmentSystem.Pages
+namespace UnitTest.Pages
 {
     public class PrivacyModel : PageModel
     {

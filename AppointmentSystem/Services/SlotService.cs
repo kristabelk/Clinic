@@ -15,7 +15,15 @@ namespace AppointmentSystem.Services
         {
             if (slot.DoctorName == null)
                 throw new SlotException();
-            await _slotRepository.Add(slot);
+
+            //check if slot exist 
+            List<Slot> AllSlots = await _slotRepository.GetAll();
+            if(AllSlots.Where(x=>x.DoctorId==slot.DoctorId).Count()>0 && AllSlots.Where(x=>x.Date == slot.Date).Count()>0)
+            {
+                throw new SlotExistException();
+            }
+            else
+                await _slotRepository.Add(slot);
 
         }
 

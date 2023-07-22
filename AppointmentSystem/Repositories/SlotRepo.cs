@@ -1,5 +1,6 @@
 ﻿using AppointmentSystem.Database;
 using AppointmentSystem.Entities;
+using AppointmentSystem.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentSystem.Repositories
@@ -14,6 +15,7 @@ namespace AppointmentSystem.Repositories
 
         public async Task Add(Slot slot)
         {
+ 
             _db.Slots.Add(slot);
             await _db.SaveChangesAsync();
         }
@@ -36,9 +38,12 @@ namespace AppointmentSystem.Repositories
 
         public async Task<List<Slot>> getByDoctorIDAvail(string? DocID)
         {
-            List<Slot> availslots = await _db.Slots.Where(x => x.IsReserved == false).ToListAsync();
+          //  List<Slot> availslots = await _db.Slots.Where(x => x.IsReserved == false).ToListAsync();
 
-            return availslots.Where(x => x.DoctorId.ToString() == DocID).ToList();
+           // return availslots.Where(x => x.DoctorId.ToString() == DocID).ToList();
+           List<Slot> availSlots =await _db.Slots.Where(x => x.IsReserved == false).Where(x => x.DoctorId.ToString() == DocID).ToListAsync();
+            return availSlots;
+
         }
 
         public async Task<Slot?> getBySlotID(string SlotID)
