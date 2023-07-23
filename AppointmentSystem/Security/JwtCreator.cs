@@ -22,7 +22,7 @@ namespace AppointmentSystem.Security
             _jwtOptions.Issuer,
             new Claim[] { new("name", userName) },
             
-            expires: DateTime.Now.AddMinutes(1),
+            expires: DateTime.Now.AddMinutes(5),
             signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

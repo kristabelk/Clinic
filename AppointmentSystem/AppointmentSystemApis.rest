@@ -2,10 +2,10 @@
 ###
 POST {{url}}/slots
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMDc3NTAsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.PXA_lnKMe0qPhhXYHvtkYF1KCpxgQ-5TpMQ2VuTaEsk
 
 {
-    "Time" : "20/06/2023 10:00 am",
+    "Time" : "22/07/2023 9:00 am",
     "Cost":70,
     "DoctorId" :"b84822c4-4226-48ff-bd89-7dc727477449",
     "DoctorName":"Dr. C",
@@ -26,10 +26,11 @@ POST  {{url}}/login
 Content-Type: application/json
 
 {
-    "Username": "admin",
+    "Username": "admin"
 }
 ###
 GET  {{url}}/slots
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMTk2NDksImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.o2xNgCsgrau1mE9kYjjYPqbacKEZhoBru4eLXHwdLYc
 DocId: 
 
 ###
@@ -39,3 +40,31 @@ DocId:
 ###
 GET {{url}}/slots/Available
 DocId:
+
+###
+GET {{url}}/UserManagement/GetDoctors
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjAwOTEsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.x0m_7tAFUr28uQV-71kk3abg3y3AYWUiYH8qOLVU5as
+
+###
+GET {{url}}/UserManagement/GetPatients
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjAwOTEsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.x0m_7tAFUr28uQV-71kk3abg3y3AYWUiYH8qOLVU5as
+
+###
+POST  {{url}}/UserManagement/AddDoctor
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+    "DoctorId": "",
+    "DoctorName": ""
+}
+
+###
+POST  {{url}}/UserManagement/AddPatient
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+    "PatientId": "",
+    "PatientName": ""
+}

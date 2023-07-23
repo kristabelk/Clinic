@@ -10,13 +10,15 @@ namespace AppointmentSystem.Services
         public readonly SlotController slotController;
         public readonly IAppointmentRepository _appointmentRepository;
         public readonly ISlotRepository _slotRepository; 
+        public readonly IUserManagementService _userManagementService;
 
         private readonly ILogger<IAppointmentService> _logger;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository, ISlotRepository slotRepository, ILogger<IAppointmentService> logger)
+        public AppointmentService(IAppointmentRepository appointmentRepository, ISlotRepository slotRepository, IUserRepository userRepository,  ILogger<IAppointmentService> logger)
         {
             _appointmentRepository = appointmentRepository;
             _slotRepository = slotRepository;
+            
             _logger = logger;
         }
 
@@ -32,12 +34,16 @@ namespace AppointmentSystem.Services
             }
             else
             {
-                appointment.ReserveAt = slot.Date;
-                appointment.DoctorId = slot.DoctorId;
-                await _appointmentRepository.Add(appointment);
+                //check if patient in db
+                if (await _userManagementService.CheckPatientExist(appointment.PatientId.ToString()) == true)
+                {
+                    appointment.ReserveAt = slot.Date;
+                    appointment.DoctorId = slot.DoctorId;
+                    await _appointmentRepository.Add(appointment);
 
-                await _slotRepository.UpdateSlot(slot);
-                SendNotification(appointment,slot);
+                    await _slotRepository.UpdateSlot(slot);
+                    SendNotification(appointment, slot);
+                }
             }
         }
 

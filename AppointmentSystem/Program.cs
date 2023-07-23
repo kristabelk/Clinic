@@ -14,6 +14,10 @@ builder.Services.AddTransient<IAppointmentService, AppointmentService>();
 
 builder.Services.AddTransient<ISlotRepository,SlotRepo>();
 builder.Services.AddTransient<ISlotService, SlotService>();
+
+builder.Services.AddTransient<IUserRepository,UserRepo>();
+builder.Services.AddTransient<IUserManagementService, UserManagementService>();
+
 builder.Services.AddTransient<JwtCreator>();
 builder.Services.AddControllers();
 
