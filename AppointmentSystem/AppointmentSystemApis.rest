@@ -20,7 +20,7 @@ Content-Type: application/json
     "SlotId": "7cc34e82-42ce-477d-8585-1897a4e8f85d",
     "PatientName":"Patient T"
 }
-
+//Authentication APIs
 ###
 POST  {{url}}/login
 Content-Type: application/json
@@ -29,42 +29,59 @@ Content-Type: application/json
     "Username": "admin"
 }
 ###
+POST  {{url}}/login/Doctor
+Content-Type: application/json
+
+{
+    "Username": "Dr. A"
+}
+###
+POST  {{url}}/login/Patient
+Content-Type: application/json
+
+{
+    "Username": "Patient A"
+}
+
+
+###
 GET  {{url}}/slots
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMTk2NDksImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.o2xNgCsgrau1mE9kYjjYPqbacKEZhoBru4eLXHwdLYc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRHIuIEEiLCJleHAiOjE2OTAxMjYxMjEsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.R5sjv3G0eTYHbm_FB4BuGUkEKX20QfW9sntFIqoI6aQ
 DocId: 
 
 ###
 GET {{url}}/appointments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjQyMDIsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.PzcGCxA7mI4EV5qOiheNwMQf_68Wm3MGk4HqTeqLTSI
 DocId:
 
 ###
 GET {{url}}/slots/Available
 DocId:
 
+
+//user Management APIs
 ###
 GET {{url}}/UserManagement/GetDoctors
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjAwOTEsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.x0m_7tAFUr28uQV-71kk3abg3y3AYWUiYH8qOLVU5as
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjUwNTYsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.iUz5MMTnj5h7iL07UiOTr4clvWdcgCjYxmLQ3lhqW-0
 
 ###
 GET {{url}}/UserManagement/GetPatients
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjAwOTEsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.x0m_7tAFUr28uQV-71kk3abg3y3AYWUiYH8qOLVU5as
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjUwNTYsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.iUz5MMTnj5h7iL07UiOTr4clvWdcgCjYxmLQ3lhqW-0
 ###
 POST  {{url}}/UserManagement/AddDoctor
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjUwNTYsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.iUz5MMTnj5h7iL07UiOTr4clvWdcgCjYxmLQ3lhqW-0
 
 {
-    "DoctorId": "",
-    "DoctorName": ""
+    "doctorId": "ee0759ea-d839-4f46-9943-2ac6e65d4205",
+    "doctorName": "Dr. O"
 }
 
 ###
 POST  {{url}}/UserManagement/AddPatient
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjUwNTYsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.iUz5MMTnj5h7iL07UiOTr4clvWdcgCjYxmLQ3lhqW-0
 
 {
-    "PatientId": "",
-    "PatientName": ""
+    "PatientName": "Patient T"
 }
