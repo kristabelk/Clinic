@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using AppointmentSystem.Entities;
 using AppointmentSystem.Controllers.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AppointmentSystem.Controllers
 {
     [Route("/slots")]
+    [Authorize]
     public class SlotController : ControllerBase
     {
         private readonly ISlotService _slotService;

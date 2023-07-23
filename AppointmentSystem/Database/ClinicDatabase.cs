@@ -7,6 +7,7 @@ namespace AppointmentSystem.Database
     {
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Slot> Slots { get; set; }
+        
 
         public ClinicDatabase(DbContextOptions<ClinicDatabase> options) : base(options) { }
 

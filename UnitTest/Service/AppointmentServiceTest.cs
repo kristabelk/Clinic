@@ -14,7 +14,7 @@ namespace UnitTest.Service
             //Arrange
             var appointmentRepository = new Mock<IAppointmentRepository>();
             var slotRepository = new Mock<ISlotRepository>();
-            var appointmentService = new AppointmentService(appointmentRepository.Object, slotRepository.Object);
+         //   var appointmentService = new AppointmentService(appointmentRepository.Object, slotRepository.Object);
             
 
         }

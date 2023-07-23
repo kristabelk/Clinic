@@ -1,14 +1,17 @@
 ﻿using AppointmentSystem.Controllers.Dtos;
 using AppointmentSystem.Entities;
 using AppointmentSystem.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppointmentSystem.Controllers
 {
     [Route("/appointments")]
+    [Authorize]
     public class AppointmentController : ControllerBase
     {
         private readonly IAppointmentService _appointmentService;
+         
         private readonly ILogger<AppointmentController> _logger;
 
         public AppointmentController(IAppointmentService appointmentService, ILogger<AppointmentController> logger)

@@ -2,9 +2,10 @@
 ###
 POST {{url}}/slots
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
 {
-    "Time" : "20/06/2023 09:00 am",
+    "Time" : "20/06/2023 10:00 am",
     "Cost":70,
     "DoctorId" :"b84822c4-4226-48ff-bd89-7dc727477449",
     "DoctorName":"Dr. C",
@@ -16,10 +17,17 @@ POST  {{url}}/appointments
 Content-Type: application/json
 
 {
-    "SlotId": "31e09cd6-261c-4cb4-bcef-b6ab1f928661",
-    "PatientName":"Patient q"
+    "SlotId": "7cc34e82-42ce-477d-8585-1897a4e8f85d",
+    "PatientName":"Patient T"
 }
 
+###
+POST  {{url}}/login
+Content-Type: application/json
+
+{
+    "Username": "admin",
+}
 ###
 GET  {{url}}/slots
 DocId: 
