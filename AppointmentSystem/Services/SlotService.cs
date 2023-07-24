@@ -7,9 +7,11 @@ namespace AppointmentSystem.Services
     public class SlotService : ISlotService
     {
         private readonly ISlotRepository _slotRepository;
-        public SlotService(ISlotRepository slotRepository)
+        private readonly ILogger<SlotService> _logger;
+        public SlotService(ISlotRepository slotRepository, ILogger<SlotService> logger)
         {
             _slotRepository = slotRepository;
+            _logger = logger;
         }
         public async Task CreateSlot(Slot slot)
         {
@@ -20,6 +22,7 @@ namespace AppointmentSystem.Services
             List<Slot> AllSlots = await _slotRepository.GetAll();
             if(AllSlots.Where(x=>x.DoctorId==slot.DoctorId).Count()>0 && AllSlots.Where(x=>x.Date == slot.Date).Count()>0)
             {
+                _logger.LogError("Slot Exist");
                 throw new SlotExistException();
             }
             else

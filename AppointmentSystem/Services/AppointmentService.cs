@@ -14,11 +14,11 @@ namespace AppointmentSystem.Services
 
         private readonly ILogger<IAppointmentService> _logger;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository, ISlotRepository slotRepository, IUserRepository userRepository,  ILogger<IAppointmentService> logger)
+        public AppointmentService(IAppointmentRepository appointmentRepository, ISlotRepository slotRepository, IUserManagementService userManagementService,  ILogger<IAppointmentService> logger)
         {
             _appointmentRepository = appointmentRepository;
             _slotRepository = slotRepository;
-            
+            _userManagementService = userManagementService;
             _logger = logger;
         }
 
@@ -35,16 +35,20 @@ namespace AppointmentSystem.Services
             else
             {
                 //check if patient in db
-                if (await _userManagementService.CheckPatientExist(appointment.PatientId.ToString()) == true)
-                {
-                    appointment.ReserveAt = slot.Date;
-                    appointment.DoctorId = slot.DoctorId;
-                    await _appointmentRepository.Add(appointment);
+                var info = await _userManagementService.CheckPatientExist(appointment.PatientName);
 
-                    await _slotRepository.UpdateSlot(slot);
-                    _logger.LogInformation("Appointment created, sending notification");
-                    SendNotification(appointment, slot);
-                }
+                //populate appt details
+                appointment.ReserveAt = slot.Date;
+                appointment.DoctorId = slot.DoctorId;
+                appointment.PatientId = info.PatientId;
+                appointment.PatientName = info.PatientName;
+                await _appointmentRepository.Add(appointment);
+
+                await _slotRepository.UpdateSlot(slot);
+                _logger.LogInformation("Appointment created, sending notification");
+                SendNotification(appointment, slot);
+
+
             }
         }
 

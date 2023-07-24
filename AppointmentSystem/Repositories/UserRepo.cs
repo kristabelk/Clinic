@@ -24,21 +24,33 @@ namespace AppointmentSystem.Repositories
             await _db.SaveChangesAsync();
         }
 
-        public async Task<bool> CheckPatientExist(string? patientName)
+        public async Task<PatientDirectory> CheckPatientExist(string? patientName)
         {
-            var doc = await _db.PatientDirectories.Where(x => x.PatientName == patientName).ToListAsync();
-            if (doc.Count == 0)
-                return false;
-            return true;
+            var Patient = await _db.PatientDirectories.Where(x => x.PatientName == patientName).ToListAsync();
+            if (Patient.Count == 0 && patientName!=null)
+            {
+                PatientDirectory newPatient = new PatientDirectory();
+                newPatient.PatientName = patientName;
+                newPatient.PatientId = Guid.NewGuid();
+                await AddNewPatient(newPatient);
+                return newPatient;
+            }
+            return Patient[0]; //return first for now.. 
         }
 
-        public async Task<bool> CheckDocExist(string? DocName)
+        public async Task<DoctorDirectory> CheckDocExist(string? DocName)
         {
 
             var doc = await _db.DoctorDirectories.Where(x => x.DoctorName == DocName).ToListAsync();
-            if (doc.Count == 0)
-                return false;
-            return true;
+            if (doc.Count == 0 && DocName!=null)
+            {
+                DoctorDirectory newDoc = new DoctorDirectory();
+                newDoc.DoctorName = DocName;
+                newDoc.DoctorId = Guid.NewGuid();
+                await AddNewDoctor(newDoc);
+                return newDoc;
+            }
+            return doc[0];
         }
 
         public async Task<List<DoctorDirectory>> GetAllDoc()

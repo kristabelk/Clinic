@@ -46,12 +46,12 @@ namespace AppointmentSystem.Controllers
         {
             if (request != null)
             {
-               
-                if (await _userManagementService.CheckDocExist(request.Username) ==true)
-                {
+
+                await _userManagementService.CheckDocExist(request.Username);
+          
                     _logger.LogInformation("Doctor login success");
                     return Ok(_jwtCreator.GenerateJsonWebToken(request.Username));
-                }
+               
 
             }
             _logger.LogInformation("Unauthorized login");
@@ -65,7 +65,7 @@ namespace AppointmentSystem.Controllers
             if (request != null)
             {
 
-                if (await _userManagementService.CheckPatientExist(request.Username) == true)
+                await _userManagementService.CheckPatientExist(request.Username);
                 {
                     _logger.LogInformation("Doctor login success");
                     return Ok(_jwtCreator.GenerateJsonWebToken(request.Username));

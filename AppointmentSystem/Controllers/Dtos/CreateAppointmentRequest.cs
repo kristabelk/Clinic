@@ -17,7 +17,7 @@ namespace AppointmentSystem.Controllers.Dtos
                 Id = Guid.NewGuid(),
                 SlotId = Guid.Parse(SlotId),
                 PatientName = PatientName,
-                PatientId = Guid.NewGuid()
+                //PatientId = Guid.NewGuid()
             //    ReservedAt = 
 
     };

@@ -36,20 +36,24 @@ namespace AppointmentSystem.Controllers
             var doclist = await _userManagementService.GetAllDoc();
             if (doclist.Count != 0)
             {
+                _logger.LogInformation("retrieving doctor list " + doclist);
                 return Ok(doclist);
             }
+            _logger.LogInformation("Doctor not found");
             return BadRequest("No doc in record");
 
         }
-        [Route("/UserManagement/AddDoctor")]
+      /*  [Route("/UserManagement/AddDoctor")]
         [HttpPost]
         public async Task<IActionResult> AddDocToDB([FromBody] DoctorDirectory docInfo)
         {
             if (docInfo != null)
             {
                 bool addsuccess = await _userManagementService.AddNewDoctor(docInfo);
+                _logger.LogInformation("{1} added to doc list " ,docInfo.DoctorName);
                 return Ok("Doc Added " +addsuccess);
             }
+            _logger.LogError("Doc name missing");
             return BadRequest("input doc info");
         }
 
@@ -60,9 +64,11 @@ namespace AppointmentSystem.Controllers
             if (PatientInfo != null)
             {
                 bool addsuccess = await _userManagementService.AddNewPatient(PatientInfo);
+                _logger.LogInformation("{1} added to Patient list ", PatientInfo.PatientName);
                 return Ok("Patient Added " + addsuccess);
             }
+            _logger.LogError("Patient name missing");
             return BadRequest("input patient info");
-        }
+        }*/
     }
 }

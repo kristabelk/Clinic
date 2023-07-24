@@ -14,50 +14,50 @@ namespace AppointmentSystem.Services
             _logger = logger;
         }
 
-        public async Task<bool> AddNewDoctor(DoctorDirectory docInfo)
-        {
-            if (await _userRepository.CheckDocExist(docInfo.DoctorName) == false)
-            {
-                if (docInfo.DoctorId == Guid.Empty)
-                {
-                    docInfo.DoctorId = Guid.NewGuid();
-                }
-                await _userRepository.AddNewDoctor(docInfo);
-                return true;
-            }
-            else
-            {
-                _logger.LogInformation("doc exist, no action taken");
-                return false;
-            }
-        }
+        /*   public async Task<bool> AddNewDoctor(DoctorDirectory docInfo)
+         {
+             if (await _userRepository.CheckDocExist(docInfo.DoctorName) == false)
+             {
+                 if (docInfo.DoctorId == Guid.Empty)
+                 {
+                     docInfo.DoctorId = Guid.NewGuid();
+                 }
+                 await _userRepository.AddNewDoctor(docInfo);
+                 return true;
+             }
+             else
+             {
+                 _logger.LogInformation("doc exist, no action taken");
+                 return false;
+             }
+         }
 
-        public async Task<bool> AddNewPatient(PatientDirectory patientInfo)
-        {
-            if (await _userRepository.CheckPatientExist(patientInfo.PatientName) == false)
-            {
-                if (patientInfo.PatientId == Guid.Empty)
-                {
-                    patientInfo.PatientId = Guid.NewGuid();
-                }
-                await _userRepository.AddNewPatient(patientInfo);
-                return true;
-            }
-            else
-            {
-                _logger.LogInformation("patient exist, no action taken");
-                return false;
-            }
+       public async Task<bool> AddNewPatient(PatientDirectory patientInfo)
+         {
+             if (await _userRepository.CheckPatientExist(patientInfo.PatientName) == false)
+             {
+                 if (patientInfo.PatientId == Guid.Empty)
+                 {
+                     patientInfo.PatientId = Guid.NewGuid();
+                 }
+                 await _userRepository.AddNewPatient(patientInfo);
+                 return true;
+             }
+             else
+             {
+                 _logger.LogInformation("patient exist, no action taken");
+                 return false;
+             }
 
-        }
-
-        public Task<bool> CheckDocExist(string? DocID)
+         }
+        */
+        public Task<DoctorDirectory> CheckDocExist(string? DocID)
         {
             return _userRepository.CheckDocExist(DocID);
             
         }
 
-        public Task<bool> CheckPatientExist(string? patientId)
+        public Task<PatientDirectory> CheckPatientExist(string? patientId)
         {
             return _userRepository.CheckPatientExist(patientId);
         }
