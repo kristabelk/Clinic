@@ -42,6 +42,7 @@ namespace AppointmentSystem.Services
                     await _appointmentRepository.Add(appointment);
 
                     await _slotRepository.UpdateSlot(slot);
+                    _logger.LogInformation("Appointment created, sending notification");
                     SendNotification(appointment, slot);
                 }
             }
@@ -51,14 +52,18 @@ namespace AppointmentSystem.Services
         {
             if (string.IsNullOrEmpty(name))
             {
+                _logger.LogInformation("retrieving all slots");
                 return await _appointmentRepository.GetAll();
                 //throw new CategoryNameEmptyException();
             }
             else
             {
+                
                 var appt = await _appointmentRepository.getByDocID(name);
                 if (appt == null)
                     return new List<Appointment> { };
+                
+                _logger.LogInformation("retrieving all appointments for ${docName}. Appointment list: {2}", name,appt);
                 return appt;
             }
         }

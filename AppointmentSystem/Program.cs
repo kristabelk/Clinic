@@ -2,8 +2,16 @@ using AppointmentSystem.Services;
 using AppointmentSystem.Repositories;
 using AppointmentSystem.Database;
 using AppointmentSystem.Security;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((context, services, configuration) =>
+{
+    configuration
+    .ReadFrom.Configuration(context.Configuration)
+    .ReadFrom.Services(services);
+});
 
 //add builder services
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(JwtOptions.SectionName));

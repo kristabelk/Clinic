@@ -11,11 +11,13 @@ namespace AppointmentSystem.Controllers
     public class SlotController : ControllerBase
     {
         private readonly ISlotService _slotService;
+        private readonly ILogger<SlotController> _logger;
         //public List<Slot> QueriedSlots { get; set; }
 
-        public SlotController(ISlotService slotService)
+        public SlotController(ISlotService slotService, ILogger<SlotController> logger)
         {
             _slotService = slotService;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -30,6 +32,7 @@ namespace AppointmentSystem.Controllers
                 return BadRequest(errors);
             }
             await _slotService.CreateSlot(slot.ConvertToSlot());
+
             return Ok("Slot Created..");
         }
 
@@ -38,7 +41,10 @@ namespace AppointmentSystem.Controllers
         {
             var slotResult = await _slotService.GetAll(DocID);
             if (slotResult.Count == 0)
+            {
+                _logger.LogError("Doctor not found");
                 return BadRequest("Doctor not found");
+            }
            // QueriedSlots = slotResult.ToList();
             return Ok(slotResult);
         }

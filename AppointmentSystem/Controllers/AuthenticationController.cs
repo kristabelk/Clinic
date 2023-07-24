@@ -13,11 +13,13 @@ namespace AppointmentSystem.Controllers
     {
         private readonly JwtCreator _jwtCreator;
         private readonly IUserManagementService _userManagementService;
+        private readonly ILogger<AuthenticationController> _logger; 
 
-        public AuthenticationController(JwtCreator jwtCreator, IUserManagementService userManagementService)
+        public AuthenticationController(JwtCreator jwtCreator, IUserManagementService userManagementService, ILogger<AuthenticationController> logger)
         {
             _jwtCreator = jwtCreator;
             _userManagementService = userManagementService;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -28,12 +30,15 @@ namespace AppointmentSystem.Controllers
                 
                 if (request.Username == "admin")
                 {
+                    _logger.LogInformation("Logging in as admin");
                     return Ok(_jwtCreator.GenerateJsonWebToken("admin"));
 
                 }
                 
             }
+            _logger.LogInformation("Unauthorized login");
             return Unauthorized();
+            
         }
         [Route("/login/Doctor")]
         [HttpPost]
@@ -41,13 +46,15 @@ namespace AppointmentSystem.Controllers
         {
             if (request != null)
             {
-                
+               
                 if (await _userManagementService.CheckDocExist(request.Username) ==true)
                 {
+                    _logger.LogInformation("Doctor login success");
                     return Ok(_jwtCreator.GenerateJsonWebToken(request.Username));
                 }
 
             }
+            _logger.LogInformation("Unauthorized login");
             return Unauthorized();
         }
 
@@ -60,10 +67,12 @@ namespace AppointmentSystem.Controllers
 
                 if (await _userManagementService.CheckPatientExist(request.Username) == true)
                 {
+                    _logger.LogInformation("Doctor login success");
                     return Ok(_jwtCreator.GenerateJsonWebToken(request.Username));
                 }
 
             }
+            _logger.LogInformation("Unauthorized login");
             return Unauthorized();
         }
     }

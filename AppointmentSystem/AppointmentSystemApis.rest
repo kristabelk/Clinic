@@ -2,7 +2,7 @@
 ###
 POST {{url}}/slots
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMDc3NTAsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.PXA_lnKMe0qPhhXYHvtkYF1KCpxgQ-5TpMQ2VuTaEsk
+Authorization: Bearer 
 
 {
     "Time" : "22/07/2023 9:00 am",
@@ -43,15 +43,15 @@ Content-Type: application/json
     "Username": "Patient A"
 }
 
-
+//Get Slots and Appointments APIs
 ###
 GET  {{url}}/slots
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRHIuIEEiLCJleHAiOjE2OTAxMjYxMjEsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.R5sjv3G0eTYHbm_FB4BuGUkEKX20QfW9sntFIqoI6aQ
+Authorization: Bearer 
 DocId: 
 
 ###
 GET {{url}}/appointments
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjQyMDIsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.PzcGCxA7mI4EV5qOiheNwMQf_68Wm3MGk4HqTeqLTSI
+Authorization: Bearer 
 DocId:
 
 ###
@@ -62,15 +62,15 @@ DocId:
 //user Management APIs
 ###
 GET {{url}}/UserManagement/GetDoctors
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjUwNTYsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.iUz5MMTnj5h7iL07UiOTr4clvWdcgCjYxmLQ3lhqW-0
+Authorization: Bearer 
 
 ###
 GET {{url}}/UserManagement/GetPatients
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjUwNTYsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.iUz5MMTnj5h7iL07UiOTr4clvWdcgCjYxmLQ3lhqW-0
+Authorization: Bearer 
 ###
 POST  {{url}}/UserManagement/AddDoctor
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjUwNTYsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.iUz5MMTnj5h7iL07UiOTr4clvWdcgCjYxmLQ3lhqW-0
+Authorization: Bearer 
 
 {
     "doctorId": "ee0759ea-d839-4f46-9943-2ac6e65d4205",
