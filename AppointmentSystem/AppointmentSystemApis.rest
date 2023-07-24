@@ -44,7 +44,7 @@ Content-Type: application/json
     "Username": "Patient A"
 }
 
-//Get Slots and Appointments APIs
+//Get Slots, Appointments, doctors and patient lists APIs
 ###
 GET  {{url}}/slots
 Authorization: Bearer 
