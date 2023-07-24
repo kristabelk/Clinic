@@ -5,20 +5,21 @@ Content-Type: application/json
 Authorization: Bearer 
 
 {
-    "Time" : "22/07/2023 9:00 am",
-    "Cost":70,
-    "DoctorId" :"b84822c4-4226-48ff-bd89-7dc727477449",
-    "DoctorName":"Dr. C",
+    "Time" : "24/07/2023 03:00 pm",
+    "Cost":100,
+    "DoctorId" :"6307d003-d75e-49a0-a742-f2dbc3a4cb4a",
+    "DoctorName":"Dr. Andy",
     "IsReserved" : false
 }
 
 ###
 POST  {{url}}/appointments
 Content-Type: application/json
+Authorization: Bearer 
 
 {
-    "SlotId": "7cc34e82-42ce-477d-8585-1897a4e8f85d",
-    "PatientName":"Patient T"
+    "SlotId": "0a514ad9-7cfd-43dd-9540-af492300d06a",
+    "PatientName":"Patient A2"
 }
 //Authentication APIs
 ###
@@ -33,7 +34,7 @@ POST  {{url}}/login/Doctor
 Content-Type: application/json
 
 {
-    "Username": "Dr. A"
+    "Username": "Dr. Andy"
 }
 ###
 POST  {{url}}/login/Patient
@@ -56,32 +57,10 @@ DocId:
 
 ###
 GET {{url}}/slots/Available
-DocId:
-
-
-//user Management APIs
+Authorization: Bearer
 ###
 GET {{url}}/UserManagement/GetDoctors
 Authorization: Bearer 
-
 ###
 GET {{url}}/UserManagement/GetPatients
 Authorization: Bearer 
-###
-POST  {{url}}/UserManagement/AddDoctor
-Content-Type: application/json
-Authorization: Bearer 
-
-{
-    "doctorId": "ee0759ea-d839-4f46-9943-2ac6e65d4205",
-    "doctorName": "Dr. O"
-}
-
-###
-POST  {{url}}/UserManagement/AddPatient
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTAxMjUwNTYsImlzcyI6IkNsaW5pYyIsImF1ZCI6IkNsaW5pYyJ9.iUz5MMTnj5h7iL07UiOTr4clvWdcgCjYxmLQ3lhqW-0
-
-{
-    "PatientName": "Patient T"
-}
